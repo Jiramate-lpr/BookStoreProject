@@ -20,7 +20,7 @@ public class BookStore {
     }
     public static void sold(int index, int amount) //ตัว check ว่าหนังสือถูก add ไปจริงมั้ย
     {
-        System.out.println("Book sold Details : ");
+        System.out.println("Book inventory : ");
         System.out.println("ISBN : "+books.get(index).getIsbn());
         System.out.println("Name : "+books.get(index).getBookName());
         System.out.println("Amount : "+books.get(index).getBookTotal());
