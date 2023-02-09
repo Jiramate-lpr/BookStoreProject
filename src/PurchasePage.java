@@ -44,11 +44,7 @@ public class PurchasePage extends JFrame {
                 found = true; //แบ่งเป็นกรณีที่เลขตรงกัน กับ ไม่ตรงกัน ก่อน
                 if (amount != 0 && Integer.valueOf(String.valueOf(tbStock.getValueAt(i, 5))) == amount) //กรณีซื้อหมดทุกจำนวณ
                 {
-                    for (int j = i; j<BookStore.purchaseOrder.size(); j++)
-                    {
-                        addOrderedBookToHistory(j, amount);
-                        BookStore.checkPurchaseBook(j);
-                    }
+                    addOrderedBookToHistory(i, amount);
                     BookStore.sold(i, amount);
                     BookStore.books.remove(i);
                     FinalBookTable finalBookTable = new FinalBookTable();
@@ -56,13 +52,10 @@ public class PurchasePage extends JFrame {
                     PurchaseSuccess success = new PurchaseSuccess();
                     System.out.println("Success");
                     break;
-                } else if (amount != 0 && Integer.valueOf(String.valueOf(tbStock.getValueAt(i, 5))) > amount) //กรณีซื้อน้อยกว่าจำนวนที่มีอยู่
+                }
+                else if (amount != 0 && Integer.valueOf(String.valueOf(tbStock.getValueAt(i, 5))) > amount) //กรณีซื้อน้อยกว่าจำนวนที่มีอยู่
                 {
-                    for (int j = i; j<BookStore.purchaseOrder.size(); j++)
-                    {
-                        addOrderedBookToHistory(j, amount);
-                        BookStore.checkPurchaseBook(j);
-                    }
+                    addOrderedBookToHistory(i, amount);
                     BookStore.books.get(i).setBookTotal(BookStore.books.get(i).getBookTotal() - amount);
                     FinalBookTable finalBookTable = new FinalBookTable();
                     tbStock.setModel(finalBookTable);
@@ -89,13 +82,13 @@ public class PurchasePage extends JFrame {
             System.out.println("Cannot found ID");
         }
     }
-    private void addOrderedBookToHistory(int j, int amount)
+    private void addOrderedBookToHistory(int i, int amount)
     {
         Book orderedBook = new Book(); //ไว้สำหรับ add เข้าไปใน arraylist ใหม่
-        orderedBook.setIsbn(String.valueOf(tbStock.getValueAt(j,1)));
-        orderedBook.setBookName(String.valueOf(tbStock.getValueAt(j,2)));
-        orderedBook.setBookDetails(String.valueOf(tbStock.getValueAt(j,3)));
-        orderedBook.setBookPrice(Double.parseDouble(String.valueOf(tbStock.getValueAt(j,4))));
+        orderedBook.setIsbn(String.valueOf(BookStore.books.get(i).getIsbn()));
+        orderedBook.setBookName(String.valueOf(BookStore.books.get(i).getBookName()));
+        orderedBook.setBookDetails(String.valueOf(BookStore.books.get(i).getBookDetails()));
+        orderedBook.setBookPrice(Double.parseDouble(String.valueOf(BookStore.books.get(i).getBookPrice())));
         orderedBook.setBookTotal(amount);
         BookStore.purchaseOrder.add(orderedBook); //added new array
         BookStore.checkOrder(BookStore.purchaseOrder.size()-1);

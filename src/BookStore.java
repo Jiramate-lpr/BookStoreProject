@@ -6,7 +6,7 @@ public class BookStore {
 
     public static void checkAddBook(int index) //ตัว check ว่าหนังสือถูก add ไปจริงมั้ย
     {
-        System.out.println("Book Details : ");
+        System.out.println("Book is added : ");
         System.out.println("ISBN : "+books.get(index).getIsbn());
         System.out.println("Name :"+books.get(index).getBookName());
         System.out.println("Details :"+books.get(index).getBookDetails());
@@ -32,16 +32,11 @@ public class BookStore {
 
     public static void checkOrder(int index) //check ordered book code
     {
-        System.out.println("Total of "+purchaseOrder.get(index).getIsbn()+ " is : "+purchaseOrder.get(index).getBookTotal());
-    }
-
-    public static void checkPurchaseBook(int index) //ตัว check ว่าหนังสือถูก add ไปจริงมั้ย
-    {
-        System.out.println("Book sold Details : ");
+        System.out.println("Your purchase is success : ");
         System.out.println("ISBN : "+purchaseOrder.get(index).getIsbn());
         System.out.println("Name : "+purchaseOrder.get(index).getBookName());
         System.out.println("Details : "+purchaseOrder.get(index).getBookDetails());
         System.out.println("Price : "+purchaseOrder.get(index).getBookPrice());
-        System.out.println("Amount : "+purchaseOrder.get(index).getBookTotal());
+        System.out.println("Total : "+purchaseOrder.get(index).getBookTotal());
     }
 }
