@@ -20,6 +20,7 @@ public class PurchasePage extends JFrame {
         pack();
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         tbStock.setModel(finalBookTable);
+        snAmount.setModel(new javax.swing.SpinnerNumberModel(1, 1, 999, 1));
         btPurchase.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -42,7 +43,7 @@ public class PurchasePage extends JFrame {
         {
             if (tbStock.getValueAt(i, 1).equals(bookID)) {
                 found = true; //แบ่งเป็นกรณีที่เลขตรงกัน กับ ไม่ตรงกัน ก่อน
-                if (amount != 0 && Integer.valueOf(String.valueOf(tbStock.getValueAt(i, 5))) == amount) //กรณีซื้อหมดทุกจำนวณ
+                if (Integer.valueOf(String.valueOf(tbStock.getValueAt(i, 5))) == amount) //กรณีซื้อหมดทุกจำนวณ
                 {
                     addOrderedBookToHistory(i, amount);
                     BookStore.sold(i, amount);
@@ -53,7 +54,7 @@ public class PurchasePage extends JFrame {
                     System.out.println("Success");
                     break;
                 }
-                else if (amount != 0 && Integer.valueOf(String.valueOf(tbStock.getValueAt(i, 5))) > amount) //กรณีซื้อน้อยกว่าจำนวนที่มีอยู่
+                else if (Integer.valueOf(String.valueOf(tbStock.getValueAt(i, 5))) > amount) //กรณีซื้อน้อยกว่าจำนวนที่มีอยู่
                 {
                     addOrderedBookToHistory(i, amount);
                     BookStore.books.get(i).setBookTotal(BookStore.books.get(i).getBookTotal() - amount);
@@ -63,12 +64,8 @@ public class PurchasePage extends JFrame {
                     BookStore.sold(i, amount);
                     System.out.println("Success");
                     break;
-                } else if (amount == 0) //กรณีไม่กรอกจำนวนสินค้า
-                {
-                    PurchaseError error = new PurchaseError();
-                    System.out.println("Empty Volume");
-                    break;
-                } else if (Integer.valueOf(String.valueOf(tbStock.getValueAt(i, 5))) < amount) //กรณีจำนวนสินค้าไม่เพียงพอ
+                }
+                else if (Integer.valueOf(String.valueOf(tbStock.getValueAt(i, 5))) < amount) //กรณีจำนวนสินค้าไม่เพียงพอ
                 {
                     OverVolume overVolume = new OverVolume();
                     System.out.println("Over Volume");
@@ -81,6 +78,8 @@ public class PurchasePage extends JFrame {
             PurchaseFailed failed = new PurchaseFailed();
             System.out.println("Cannot found ID");
         }
+        tfBookCode.setText("");
+        snAmount.setValue(1);
     }
     private void addOrderedBookToHistory(int i, int amount)
     {

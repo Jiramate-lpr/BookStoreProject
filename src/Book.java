@@ -3,7 +3,7 @@ public class Book {
     private String bookName = "";
     private String bookDetails = "";
     private double bookPrice = 0;
-    private int bookTotal = 1;
+    private int bookTotal = 0;
 
     public String getIsbn()
     {
