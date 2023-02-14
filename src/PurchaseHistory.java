@@ -10,7 +10,6 @@ public class PurchaseHistory extends JFrame {
     public PurchaseHistory() {
         OrderedBooks orderedBookTable = new OrderedBooks();
         tbPurchase.setModel(orderedBookTable);
-        tbPurchase.setModel(orderedBookTable);
         tbPurchase.setLocale(new Locale("th", "TH"));
         tbPurchase.setFont(f);
         setContentPane(pnPurchaseHistory);
