@@ -14,7 +14,7 @@
         </constraints>
         <properties>
           <font size="15"/>
-          <text value="Your Order is Confirmed"/>
+          <text value="Your Order has been received"/>
         </properties>
       </component>
       <component id="11af0" class="javax.swing.JButton" binding="btCheckOrder">
