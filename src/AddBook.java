@@ -1,6 +1,8 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Locale;
 
 public class AddBook extends JFrame {
     private JTextField tfBookCode;
@@ -11,16 +13,23 @@ public class AddBook extends JFrame {
     private JButton btAdd;
     private JTable tbBooks;
     private JSpinner snTotal;
-
     private boolean isbnExists = false;
+    Font f=new Font("TH Sarabun New", Font.PLAIN, 20);
 
 
     public AddBook()
     {
+        tfBookName.setFont(f);
+        taBookDetails.setFont(f);
+        taBookDetails.setLineWrap(true);
+        taBookDetails.setWrapStyleWord(true);
+        tbBooks.setLocale(new Locale("th", "TH"));
+        tbBooks.setFont(f);
+
         FinalBookTable finalBookTable = new FinalBookTable();
         setContentPane(addBookPage);
         setVisible(true);
-        setSize(500,500);
+        pack();
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         tbBooks.setModel(finalBookTable);
         snTotal.setModel(new javax.swing.SpinnerNumberModel(1, 1, 999, 1));
@@ -40,6 +49,8 @@ public class AddBook extends JFrame {
                 BookStore.books.get(i).setBookTotal(BookStore.books.get(i).getBookTotal() + (Integer)snTotal.getValue()); //update total on arraylist
                 FinalBookTable finalBookTable = new FinalBookTable();
                 tbBooks.setModel(finalBookTable);
+                tbBooks.setLocale(new Locale("th", "TH"));
+                tbBooks.setFont(f);
                 isbnExists = true;
                 BookStore.checkCode(i);
                 break;
@@ -57,6 +68,8 @@ public class AddBook extends JFrame {
             BookStore.checkAddBook(BookStore.books.size()-1);
             FinalBookTable finalBookTable = new FinalBookTable();
             tbBooks.setModel(finalBookTable);
+            tbBooks.setLocale(new Locale("th", "TH"));
+            tbBooks.setFont(f);
     }
 
         tfBookCode.setText("");

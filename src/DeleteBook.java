@@ -1,12 +1,15 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Locale;
 
 public class DeleteBook extends JFrame{
     private JTextField tfBookCode;
     private JPanel deletePage;
     private JButton btDelete;
     private JTable tbBooks;
+    Font f=new Font("TH Sarabun New", Font.PLAIN, 20);
 
     public DeleteBook()
     {
@@ -15,6 +18,8 @@ public class DeleteBook extends JFrame{
         setVisible(true);
         pack();
         tbBooks.setModel(finalBookTable);
+        tbBooks.setLocale(new Locale("th", "TH"));
+        tbBooks.setFont(f);
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         btDelete.addMouseListener(new MouseAdapter() {
             @Override
@@ -36,7 +41,9 @@ public class DeleteBook extends JFrame{
                 BookStore.checkedDelete(i);
                 BookStore.books.remove(i);
                 FinalBookTable finalBookTable = new FinalBookTable();
-                tbBooks.setModel(finalBookTable); //สร้าง object ตารางใหม่เพื่อ update ข้อมูลที่ถูกลบ
+                tbBooks.setModel(finalBookTable);//สร้าง object ตารางใหม่เพื่อ update ข้อมูลที่ถูกลบ
+                tbBooks.setLocale(new Locale("th", "TH"));
+                tbBooks.setFont(f);
                 DeleteSuccess success = new DeleteSuccess();
                 found = true;
                 break;

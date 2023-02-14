@@ -1,8 +1,10 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Locale;
 
 public class PurchasePage extends JFrame {
     private JTextField tfBookCode;
@@ -11,6 +13,7 @@ public class PurchasePage extends JFrame {
     private JPanel purchasePage;
     private JTable tbStock;
     private JButton btHistory;
+    Font f=new Font("TH Sarabun New", Font.PLAIN, 20);
 
 
     public PurchasePage() {
@@ -20,6 +23,8 @@ public class PurchasePage extends JFrame {
         pack();
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         tbStock.setModel(finalBookTable);
+        tbStock.setLocale(new Locale("th", "TH"));
+        tbStock.setFont(f);
         snAmount.setModel(new javax.swing.SpinnerNumberModel(1, 1, 999, 1));
         btPurchase.addActionListener(new ActionListener() {
             @Override
@@ -50,6 +55,8 @@ public class PurchasePage extends JFrame {
                     BookStore.books.remove(i);
                     FinalBookTable finalBookTable = new FinalBookTable();
                     tbStock.setModel(finalBookTable);
+                    tbStock.setLocale(new Locale("th", "TH"));
+                    tbStock.setFont(f);
                     PurchaseSuccess success = new PurchaseSuccess();
                     System.out.println("Success");
                     break;
@@ -60,6 +67,9 @@ public class PurchasePage extends JFrame {
                     BookStore.books.get(i).setBookTotal(BookStore.books.get(i).getBookTotal() - amount);
                     FinalBookTable finalBookTable = new FinalBookTable();
                     tbStock.setModel(finalBookTable);
+                    tbStock.setModel(finalBookTable);
+                    tbStock.setLocale(new Locale("th", "TH"));
+                    tbStock.setFont(f);
                     PurchaseSuccess success = new PurchaseSuccess();
                     BookStore.sold(i, amount);
                     System.out.println("Success");
