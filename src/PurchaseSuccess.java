@@ -4,7 +4,8 @@ import java.awt.event.MouseEvent;
 
 public class PurchaseSuccess extends JFrame {
     private JPanel pnSuccess;
-    private JButton btOk;
+    private JButton btCheckOrder;
+    private JButton btClose;
 
     public PurchaseSuccess()
     {
@@ -12,11 +13,19 @@ public class PurchaseSuccess extends JFrame {
         setVisible(true);
         pack();
         setDefaultCloseOperation(HIDE_ON_CLOSE);
-        btOk.addMouseListener(new MouseAdapter() {
+
+        btClose.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 setVisible(false);
+            }
+        });
+        btCheckOrder.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                PurchaseHistory history = new PurchaseHistory();
             }
         });
     }

@@ -32,7 +32,7 @@ public class BookStore {
 
     public static void checkOrder(int index) //check ordered book code
     {
-        System.out.println("Your purchase is success : ");
+        System.out.println("Your purchase is success :");
         System.out.println("ISBN : "+purchaseOrder.get(index).getIsbn());
         System.out.println("Name : "+purchaseOrder.get(index).getBookName());
         System.out.println("Details : "+purchaseOrder.get(index).getBookDetails());
