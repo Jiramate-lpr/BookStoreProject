@@ -12,6 +12,7 @@ public class PurchaseHistory extends JFrame {
         tbPurchase.setModel(orderedBookTable);
         tbPurchase.setLocale(new Locale("th", "TH"));
         tbPurchase.setFont(f);
+        tbPurchase.setRowHeight(40);
         setContentPane(pnPurchaseHistory);
         setVisible(true);
         pack();

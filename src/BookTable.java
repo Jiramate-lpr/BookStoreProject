@@ -18,6 +18,7 @@ public class BookTable extends JFrame  {
         tbBook.setModel(finalBookTable);
         tbBook.setLocale(new Locale("th", "TH"));
         tbBook.setFont(f);
+        tbBook.setRowHeight(40);
         setContentPane(pnTable);
         setVisible(true);
         pack();

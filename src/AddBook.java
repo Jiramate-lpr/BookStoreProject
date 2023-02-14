@@ -27,6 +27,7 @@ public class AddBook extends JFrame {
         tbBooks.setFont(f);
 
         FinalBookTable finalBookTable = new FinalBookTable();
+        tbBooks.setRowHeight(40);
         setContentPane(addBookPage);
         setVisible(true);
         pack();

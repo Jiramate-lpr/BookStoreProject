@@ -25,6 +25,7 @@ public class PurchasePage extends JFrame {
         tbStock.setModel(finalBookTable);
         tbStock.setLocale(new Locale("th", "TH"));
         tbStock.setFont(f);
+        tbStock.setRowHeight(40);
         snAmount.setModel(new javax.swing.SpinnerNumberModel(1, 1, 999, 1));
         btPurchase.addActionListener(new ActionListener() {
             @Override
@@ -57,6 +58,7 @@ public class PurchasePage extends JFrame {
                     tbStock.setModel(finalBookTable);
                     tbStock.setLocale(new Locale("th", "TH"));
                     tbStock.setFont(f);
+                    tbStock.setRowHeight(40);
                     PurchaseSuccess success = new PurchaseSuccess();
                     System.out.println("Success");
                     break;
@@ -70,6 +72,7 @@ public class PurchasePage extends JFrame {
                     tbStock.setModel(finalBookTable);
                     tbStock.setLocale(new Locale("th", "TH"));
                     tbStock.setFont(f);
+                    tbStock.setRowHeight(40);
                     PurchaseSuccess success = new PurchaseSuccess();
                     BookStore.sold(i, amount);
                     System.out.println("Success");

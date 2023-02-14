@@ -20,6 +20,7 @@ public class DeleteBook extends JFrame{
         tbBooks.setModel(finalBookTable);
         tbBooks.setLocale(new Locale("th", "TH"));
         tbBooks.setFont(f);
+        tbBooks.setRowHeight(40);
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         btDelete.addMouseListener(new MouseAdapter() {
             @Override
@@ -44,6 +45,7 @@ public class DeleteBook extends JFrame{
                 tbBooks.setModel(finalBookTable);//สร้าง object ตารางใหม่เพื่อ update ข้อมูลที่ถูกลบ
                 tbBooks.setLocale(new Locale("th", "TH"));
                 tbBooks.setFont(f);
+                tbBooks.setRowHeight(40);
                 DeleteSuccess success = new DeleteSuccess();
                 found = true;
                 break;
