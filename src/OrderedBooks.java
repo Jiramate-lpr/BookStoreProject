@@ -18,15 +18,15 @@ public class OrderedBooks extends AbstractTableModel {
             case 0:
                 return rowIndex + 1;
             case 1:
-                BookStore.purchaseOrder.get(rowIndex).getIsbn();
+                return BookStore.purchaseOrder.get(rowIndex).getIsbn();
             case 2:
-                BookStore.purchaseOrder.get(rowIndex).getBookName();
+                return BookStore.purchaseOrder.get(rowIndex).getBookName();
             case 3:
-                BookStore.purchaseOrder.get(rowIndex).getBookDetails();
+                return BookStore.purchaseOrder.get(rowIndex).getBookDetails();
             case 4:
-                BookStore.purchaseOrder.get(rowIndex).getBookPrice();
+                return BookStore.purchaseOrder.get(rowIndex).getBookPrice();
             case 5:
-                BookStore.purchaseOrder.get(rowIndex).getBookTotal();
+                return BookStore.purchaseOrder.get(rowIndex).getBookTotal();
             default:
                 return null;
         }
