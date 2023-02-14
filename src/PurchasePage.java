@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,16 +18,7 @@ public class PurchasePage extends JFrame {
 
 
     public PurchasePage() {
-        FinalBookTable finalBookTable = new FinalBookTable();
-        setContentPane(purchasePage);
-        setVisible(true);
-        pack();
-        setDefaultCloseOperation(HIDE_ON_CLOSE);
-        tbStock.setModel(finalBookTable);
-        tbStock.setLocale(new Locale("th", "TH"));
-        tbStock.setFont(f);
-        tbStock.setRowHeight(40);
-        snAmount.setModel(new javax.swing.SpinnerNumberModel(1, 1, 999, 1));
+        setDisplay();
         btPurchase.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -59,6 +51,7 @@ public class PurchasePage extends JFrame {
                     tbStock.setLocale(new Locale("th", "TH"));
                     tbStock.setFont(f);
                     tbStock.setRowHeight(40);
+                    setLayoutTable();
                     PurchaseSuccess success = new PurchaseSuccess();
                     System.out.println("Success");
                     break;
@@ -73,6 +66,7 @@ public class PurchasePage extends JFrame {
                     tbStock.setLocale(new Locale("th", "TH"));
                     tbStock.setFont(f);
                     tbStock.setRowHeight(40);
+                    setLayoutTable();
                     PurchaseSuccess success = new PurchaseSuccess();
                     BookStore.sold(i, amount);
                     System.out.println("Success");
@@ -104,5 +98,34 @@ public class PurchasePage extends JFrame {
         orderedBook.setBookTotal(amount);
         BookStore.purchaseOrder.add(orderedBook); //added new array
         BookStore.checkOrder(BookStore.purchaseOrder.size()-1);
+    }
+
+    private void setLayoutTable()
+    {
+        TableColumnModel columnModel = tbStock.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(30);
+        columnModel.getColumn(1).setPreferredWidth(70);
+        columnModel.getColumn(2).setPreferredWidth(250);
+        columnModel.getColumn(3).setPreferredWidth(2000);
+        columnModel.getColumn(4).setPreferredWidth(70);
+        columnModel.getColumn(5).setPreferredWidth(50);
+    }
+    private void setThaiLanguage()
+    {
+        tbStock.setLocale(new Locale("th", "TH"));
+        tbStock.setFont(f);
+    }
+    private void setDisplay()
+    {
+        FinalBookTable finalBookTable = new FinalBookTable();
+        setContentPane(purchasePage);
+        setVisible(true);
+        setSize(1920,1040);
+        setDefaultCloseOperation(HIDE_ON_CLOSE);
+        tbStock.setModel(finalBookTable);
+        setThaiLanguage();
+        tbStock.setRowHeight(40);
+        setLayoutTable();
+        snAmount.setModel(new javax.swing.SpinnerNumberModel(1, 1, 999, 1));
     }
 }

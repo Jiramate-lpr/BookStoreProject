@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -13,15 +14,8 @@ public class DeleteBook extends JFrame{
 
     public DeleteBook()
     {
-        FinalBookTable finalBookTable = new FinalBookTable();
-        setContentPane(deletePage);
-        setVisible(true);
-        pack();
-        tbBooks.setModel(finalBookTable);
-        tbBooks.setLocale(new Locale("th", "TH"));
-        tbBooks.setFont(f);
-        tbBooks.setRowHeight(40);
-        setDefaultCloseOperation(HIDE_ON_CLOSE);
+        setDisplay();
+
         btDelete.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -46,6 +40,7 @@ public class DeleteBook extends JFrame{
                 tbBooks.setLocale(new Locale("th", "TH"));
                 tbBooks.setFont(f);
                 tbBooks.setRowHeight(40);
+                setLayoutTable();
                 DeleteSuccess success = new DeleteSuccess();
                 found = true;
                 break;
@@ -55,5 +50,28 @@ public class DeleteBook extends JFrame{
         {
             DeleteFailed failed = new DeleteFailed();
         }
+    }
+    private void setLayoutTable()
+    {
+        TableColumnModel columnModel = tbBooks.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(30);
+        columnModel.getColumn(1).setPreferredWidth(70);
+        columnModel.getColumn(2).setPreferredWidth(250);
+        columnModel.getColumn(3).setPreferredWidth(2000);
+        columnModel.getColumn(4).setPreferredWidth(70);
+        columnModel.getColumn(5).setPreferredWidth(50);
+    }
+    private void setDisplay()
+    {
+        FinalBookTable finalBookTable = new FinalBookTable();
+        setContentPane(deletePage);
+        setVisible(true);
+        setSize(1920,1040);
+        tbBooks.setModel(finalBookTable);
+        setLayoutTable();
+        tbBooks.setLocale(new Locale("th", "TH"));
+        tbBooks.setFont(f);
+        tbBooks.setRowHeight(40);
+        setDefaultCloseOperation(HIDE_ON_CLOSE);
     }
 }

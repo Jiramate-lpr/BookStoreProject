@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -19,21 +20,7 @@ public class AddBook extends JFrame {
 
     public AddBook()
     {
-        tfBookName.setFont(f);
-        taBookDetails.setFont(f);
-        taBookDetails.setLineWrap(true);
-        taBookDetails.setWrapStyleWord(true);
-        tbBooks.setLocale(new Locale("th", "TH"));
-        tbBooks.setFont(f);
-
-        FinalBookTable finalBookTable = new FinalBookTable();
-        tbBooks.setRowHeight(40);
-        setContentPane(addBookPage);
-        setVisible(true);
-        pack();
-        setDefaultCloseOperation(HIDE_ON_CLOSE);
-        tbBooks.setModel(finalBookTable);
-        snTotal.setModel(new javax.swing.SpinnerNumberModel(1, 1, 999, 1));
+        setDisplay();
 
         btAdd.addMouseListener(new MouseAdapter() {
             @Override
@@ -50,6 +37,7 @@ public class AddBook extends JFrame {
                 BookStore.books.get(i).setBookTotal(BookStore.books.get(i).getBookTotal() + (Integer)snTotal.getValue()); //update total on arraylist
                 FinalBookTable finalBookTable = new FinalBookTable();
                 tbBooks.setModel(finalBookTable);
+                setLayoutTable();
                 tbBooks.setLocale(new Locale("th", "TH"));
                 tbBooks.setFont(f);
                 isbnExists = true;
@@ -69,6 +57,7 @@ public class AddBook extends JFrame {
             BookStore.checkAddBook(BookStore.books.size()-1);
             FinalBookTable finalBookTable = new FinalBookTable();
             tbBooks.setModel(finalBookTable);
+            setLayoutTable();
             tbBooks.setLocale(new Locale("th", "TH"));
             tbBooks.setFont(f);
     }
@@ -79,5 +68,39 @@ public class AddBook extends JFrame {
         taBookDetails.setText("");
         snTotal.setValue(1);
         PopUpSuccess success = new PopUpSuccess();
+    }
+    private void setLayoutTable()
+    {
+        tbBooks.setRowHeight(40);
+        TableColumnModel columnModel = tbBooks.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(30);
+        columnModel.getColumn(1).setPreferredWidth(70);
+        columnModel.getColumn(2).setPreferredWidth(250);
+        columnModel.getColumn(3).setPreferredWidth(2000);
+        columnModel.getColumn(4).setPreferredWidth(70);
+        columnModel.getColumn(5).setPreferredWidth(50);
+    }
+
+    private void setThaiLanguage()
+    {
+        tfBookName.setFont(f);
+        taBookDetails.setFont(f);
+        tbBooks.setLocale(new Locale("th", "TH"));
+        tbBooks.setFont(f);
+    }
+
+    private void setDisplay()
+    {
+        setContentPane(addBookPage);
+        setVisible(true);
+        setSize(1920,1040);
+        setThaiLanguage();
+        setDefaultCloseOperation(HIDE_ON_CLOSE);
+        taBookDetails.setLineWrap(true);
+        taBookDetails.setWrapStyleWord(true);
+        FinalBookTable finalBookTable = new FinalBookTable();
+        tbBooks.setModel(finalBookTable);
+        setLayoutTable();
+        snTotal.setModel(new javax.swing.SpinnerNumberModel(1, 1, 999, 1));
     }
 }
